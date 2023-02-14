@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import schedule
+
 import time
 
 
@@ -10,7 +10,7 @@ def webscrapping_69b():
     """
     url_page='http://omawww.sat.gob.mx/cifras_sat/Paginas/datos/vinculo.html?page=ListCompleta69B.html'
     try:
-        response = request.get(url_page)
+        response = requests.get(url_page)
         response.raise_for_status()
         content = response.content
 
@@ -29,11 +29,3 @@ def webscrapping_69b():
         print(f"Error en la solicitud: {e}")
     except Exception as e:
         print(f"Error en obtener la lista: {e}")
-
-
-def schedule_list(hr='06:00'):
-    """
-    Functions that recibe the hr to check list,
-    and execute webscraping function.
-    """
-    schedule.every().day.at(hr).do(webscrapping_69b)
